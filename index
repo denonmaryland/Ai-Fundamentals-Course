@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our AI Mastery Roadmap</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+:root {
+  --mindset:  #6366F1;
+  --ai101:    #3B82F6;
+  --prompt:   #F59E0B;
+  --llm:      #06B6D4;
+  --agents:   #EC4899;
+  --courses:  #10B981;
+  --path:     #F97316;
+  --bg:       #0C0C12;
+  --surface:  #13131C;
+  --s2:       #1C1C28;
+  --s3:       #242434;
+  --border:   #2A2A3E;
+  --text:     #E2E2EE;
+  --muted:    #7070A0;
+  --sw: 260px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ─────────────────────────── */
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: var(--sw);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  z-index: 100; overflow: hidden;
+}
+
+.sidebar-top {
+  padding: 22px 18px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-logo {
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: #fff; display: flex; align-items: center; gap: 8px;
+}
+.sidebar-logo span { color: var(--muted); font-weight: 400; }
+.sidebar-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+.sidebar-progress {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.progress-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.progress-bar { height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg,#6366F1,#EC4899); border-radius: 99px; transition: width .4s ease; }
+
+.nav-scroll { flex: 1; overflow-y: auto; padding: 10px 10px 20px; }
+.nav-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 12px 8px 5px; display: block; }
+
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px; border-radius: 8px; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--text);
+  transition: background .12s, color .12s; margin-bottom: 1px;
+  border: none; background: none; width: 100%; text-align: left;
+}
+.nav-item:hover { background: var(--s2); }
+.nav-item.active { background: var(--s3); color: #fff; }
+.nav-item.active .nav-num { color: #fff; }
+
+.nav-num {
+  width: 22px; height: 22px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  flex-shrink: 0; border: 1px solid var(--border);
+}
+.nav-item.active .nav-num { border-color: transparent; }
+
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ── MAIN ────────────────────────────── */
+.main { margin-left: var(--sw); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* pages hidden by default */
+.page { display: none; flex: 1; flex-direction: column; }
+.page.active { display: flex; }
+
+/* ── HOME PAGE ───────────────────────── */
+.home-hero {
+  padding: 80px 72px 64px;
+  background: linear-gradient(160deg, #0C0C18 0%, #14102A 45%, #0C1420 100%);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.home-hero::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(99,102,241,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.home-hero::after {
+  content: ''; position: absolute; bottom: -60px; left: 25%;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(236,72,153,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.3);
+  border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600;
+  color: #A5B4FC; letter-spacing: .04em; margin-bottom: 28px;
+}
+.home-hero h1 {
+  font-size: clamp(36px, 5vw, 58px); font-weight: 800;
+  line-height: 1.1; letter-spacing: -.03em; color: #fff;
+  max-width: 700px; margin-bottom: 22px;
+}
+.home-hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg,#818CF8,#C084FC,#F472B6);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.home-hero p {
+  font-size: 17px; color: rgba(255,255,255,.6); max-width: 580px;
+  line-height: 1.75; margin-bottom: 40px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg,#6366F1,#8B5CF6);
+  color: #fff; padding: 14px 28px; border-radius: 12px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  border: none; transition: opacity .15s, transform .15s; text-decoration: none;
+}
+.hero-cta:hover { opacity: .9; transform: translateY(-1px); }
+
+.home-how {
+  padding: 52px 72px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.section-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.home-how h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 24px; }
+.how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; }
+.how-card {
+  background: var(--s2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start;
+}
+.how-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.how-card strong { display: block; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.how-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+.home-sections { padding: 52px 72px; }
+.home-sections h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 28px; }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 16px; }
+
+.course-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 24px; cursor: pointer; transition: transform .15s, border-color .15s;
+  text-align: left; border-left: 3px solid;
+}
+.course-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.12); }
+.course-card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+.course-card h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.course-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.course-card-num { font-size: 11px; font-weight: 600; letter-spacing: .06em; margin-top: 14px; opacity: .5; }
+
+/* ── CONTENT PAGES ───────────────────── */
+.page-header {
+  padding: 48px 72px 40px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: relative; overflow: hidden;
+}
+.page-header::after {
+  content: ''; position: absolute; top: -60px; right: -40px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, var(--accent-glow, rgba(99,102,241,.12)) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+}
+.page-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; }
+.page-header h1 {
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  letter-spacing: -.02em; color: #fff; line-height: 1.15; margin-bottom: 12px;
+}
+.page-header .lead {
+  font-size: 16px; color: rgba(255,255,255,.6); max-width: 620px; line-height: 1.7;
+}
+
+.page-body { padding: 52px 72px; flex: 1; }
+
+/* ── CALLOUT ─────────────────────────── */
+.callout {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 12px; padding: 18px 22px;
+  font-size: 15px; color: rgba(255,255,255,.8); line-height: 1.7; margin: 28px 0;
+}
+.callout.colored { border-left: 3px solid; border-radius: 0 12px 12px 0; }
+
+/* ── TOPIC SECTION ───────────────────── */
+.topic-section { margin: 40px 0; }
+.topic-section + .topic-section { border-top: 1px solid var(--border); padding-top: 40px; }
+
+.topic-heading {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+}
+.topic-tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 10px; font-size: 16px; flex-shrink: 0;
+}
+.topic-heading h2 { font-size: 19px; font-weight: 700; color: #fff; }
+.topic-heading p.sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.topic-body { font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.8; }
+.topic-body p { margin-bottom: 14px; }
+.topic-body p:last-child { margin-bottom: 0; }
+.topic-body strong { color: #fff; font-weight: 600; }
+.topic-body em { color: rgba(255,255,255,.5); font-style: italic; }
+
+/* ── LISTS ───────────────────────────── */
+.content-list { list-style: none; margin: 16px 0; }
+.content-list li {
+  font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.65;
+  padding: 10px 0 10px 20px; border-bottom: 1px solid rgba(255,255,255,.05);
+  position: relative;
+}
+.content-list li:last-child { border-bottom: none; }
+.content-list li::before { content: '›'; position: absolute; left: 3px; color: var(--muted); }
+.content-list li strong { color: #fff; font-weight: 600; }
+
+/* ── INFO CARDS GRID ─────────────────── */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; margin: 24px 0; }
+.info-card {
+  background: var(--s2); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+}
+.info-card-icon { font-size: 22px; margin-bottom: 10px; }
+.info-card h3 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.info-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── LEVEL BLOCKS ────────────────────── */
+.level-block {
+  background: var(--s2); border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; margin: 24px 0;
+}
+.level-header {
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.level-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+}
+.level-header h3 { font-size: 14px; font-weight: 700; color: #fff; }
+.level-header p { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.level-body { padding: 20px; }
+
+/* ── TIMELINE ────────────────────────── */
+.timeline { margin: 24px 0; }
+.timeline-item {
+  display: flex; gap: 20px; padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.timeline-item:last-child { border-bottom: none; }
+.timeline-year {
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  min-width: 48px; padding-top: 2px;
+}
+.timeline-content h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.timeline-content p { font-size: 13.5px; color: rgba(255,255,255,.6); line-height: 1.55; }
+
+/* ── TERM GLOSSARY ───────────────────── */
+.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 12px; margin: 24px 0; }
+.term-card {
+  background: var(--s2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px 18px;
+}
+.term-card .term { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.term-card .def { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.55; }
+
+/* ── CHALLENGE BLOCK ─────────────────── */
+.challenges-wrap {
+  background: rgba(236,72,153,.06); border: 1px solid rgba(236,72,153,.2);
+  border-radius: 16px; padding: 28px; margin: 36px 0;
+}
+.challenges-wrap h2 {
+  font-size: 17px; font-weight: 800; color: #F472B6;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+}
+.challenges-wrap .cw-sub { font-size: 13px; color: rgba(244,114,182,.6); margin-bottom: 20px; }
+
+.challenge {
+  background: rgba(0,0,0,.25); border-radius: 10px; padding: 18px 20px;
+  margin-bottom: 12px; border-left: 3px solid rgba(236,72,153,.45);
+}
+.challenge:last-child { margin-bottom: 0; }
+.challenge h4 { font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 7px; }
+.challenge p { font-size: 13.5px; color: rgba(255,255,255,.65); line-height: 1.65; }
+.challenge ul { list-style: disc; padding-left: 18px; margin-top: 8px; }
+.challenge ul li { font-size: 13.5px; color: rgba(255,255,255,.6); line-height: 1.6; padding: 2px 0; }
+
+/* ── COMPARISON TABLE ────────────────── */
+.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+.compare-table th {
+  text-align: left; padding: 12px 16px; font-size: 11px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--border); background: var(--s2);
+}
+.compare-table td {
+  padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,.04);
+  color: rgba(255,255,255,.72); vertical-align: top; line-height: 1.55;
+}
+.compare-table td:first-child { font-weight: 600; color: #fff; }
+.compare-table tr:last-child td { border-bottom: none; }
+
+/* ── PHASE BLOCK (Learning Path) ─────── */
+.phase {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; margin: 20px 0;
+}
+.phase-head {
+  padding: 16px 22px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.phase-head h3 { font-size: 15px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+.phase-head .sub { font-size: 12px; color: var(--muted); }
+.tasks { padding: 6px 0; }
+.task {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 22px; cursor: pointer; transition: background .1s;
+}
+.task:hover { background: rgba(255,255,255,.025); }
+.check {
+  width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.2);
+  border-radius: 5px; flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s; font-size: 11px; font-weight: 700; color: #fff;
+}
+.task.done .check { background: #10B981; border-color: #10B981; }
+.task p { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.5; }
+.task.done p { color: rgba(255,255,255,.3); text-decoration: line-through; }
+
+/* ── COURSE RESOURCE CARD ────────────── */
+.resource-group { margin: 28px 0; }
+.resource-group h3 {
+  font-size: 15px; font-weight: 700; color: #fff;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+}
+.resource-items { background: var(--s2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.resource-item {
+  padding: 15px 20px; border-bottom: 1px solid var(--border);
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.resource-item:last-child { border-bottom: none; }
+.resource-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.resource-item .name { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.resource-item .desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.resource-empty {
+  padding: 22px 20px; text-align: center; font-size: 13px;
+  color: rgba(255,255,255,.2); font-style: italic; border: 2px dashed rgba(255,255,255,.07); border-radius: 10px;
+}
+
+/* ── PAGE NAV ────────────────────────── */
+.page-nav {
+  padding: 32px 72px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--surface); margin-top: auto;
+}
+.nav-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--s2); border: 1px solid var(--border); color: var(--text);
+  padding: 12px 20px; border-radius: 10px; cursor: pointer;
+  font-size: 14px; font-weight: 600; transition: background .12s, border-color .12s;
+}
+.nav-btn:hover { background: var(--s3); border-color: rgba(255,255,255,.12); }
+.nav-btn:disabled { opacity: .3; cursor: default; pointer-events: none; }
+.nav-btn .direction { font-size: 11px; font-weight: 400; color: var(--muted); display: block; }
+
+.page-indicator { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+/* ── SCROLLBAR ───────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+/* ── MOBILE HEADER ───────────────────── */
+.mobile-header {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; height: 52px;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  align-items: center; justify-content: space-between;
+  padding: 0 18px; z-index: 200;
+}
+.mobile-menu-btn {
+  background: none; border: 1px solid var(--border); color: var(--text);
+  border-radius: 8px; padding: 7px 11px; cursor: pointer; font-size: 15px; line-height: 1;
+}
+.mobile-logo { font-size: 13px; font-weight: 700; color: #fff; }
+.mobile-logo span { color: var(--muted); font-weight: 400; }
+
+.mobile-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.55); z-index: 300;
+}
+.mobile-overlay.open { display: block; }
+
+/* ── RESPONSIVE ──────────────────────── */
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    z-index: 400;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding-top: 52px; }
+  .mobile-header { display: flex; }
+  .home-hero, .home-how, .home-sections, .page-header, .page-body, .page-nav { padding-left: 24px; padding-right: 24px; }
+}
+
+/* ── DIVIDER ─────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* back-to-top */
+#btt { position: fixed; bottom: 28px; right: 28px; background: var(--s2); border: 1px solid var(--border); color: var(--text); border-radius: 50%; width: 40px; height: 40px; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; z-index: 200; transition: background .12s; }
+#btt:hover { background: var(--s3); }
+#btt.show { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- MOBILE HEADER -->
+<header class="mobile-header">
+  <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu">☰</button>
+  <div class="mobile-logo">🗺️ AI Mastery <span>Roadmap</span></div>
+  <div style="width:38px"></div>
+</header>
+<div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-logo">🗺️ AI Mastery <span>Roadmap</span></div>
+    <div class="sidebar-sub">Jeremiah &amp; DeNon · March 2026</div>
+  </div>
+  <div class="sidebar-progress">
+    <div class="progress-label"><span>Progress</span><span id="prog-text">0 of 7</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <nav class="nav-scroll">
+    <span class="nav-label">Start</span>
+    <button class="nav-item active" onclick="goTo(0)" id="nav-0">
+      <div class="nav-num">🏠</div>
+      Home
+    </button>
+    <span class="nav-label">The Curriculum</span>
+    <button class="nav-item" onclick="goTo(1)" id="nav-1">
+      <div class="nav-num" style="background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.3);color:#818CF8">1</div>
+      🎯 The Right Mindset
+    </button>
+    <button class="nav-item" onclick="goTo(2)" id="nav-2">
+      <div class="nav-num" style="background:rgba(59,130,246,.2);border-color:rgba(59,130,246,.3);color:#60A5FA">2</div>
+      📖 AI 101
+    </button>
+    <button class="nav-item" onclick="goTo(3)" id="nav-3">
+      <div class="nav-num" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.3);color:#FCD34D">3</div>
+      💬 Prompting
+    </button>
+    <button class="nav-item" onclick="goTo(4)" id="nav-4">
+      <div class="nav-num" style="background:rgba(6,182,212,.2);border-color:rgba(6,182,212,.3);color:#22D3EE">4</div>
+      🔧 How LLMs Work
+    </button>
+    <button class="nav-item" onclick="goTo(5)" id="nav-5">
+      <div class="nav-num" style="background:rgba(236,72,153,.2);border-color:rgba(236,72,153,.3);color:#F472B6">5</div>
+      🤖 AI Agents
+    </button>
+    <button class="nav-item" onclick="goTo(6)" id="nav-6">
+      <div class="nav-num" style="background:rgba(16,185,129,.2);border-color:rgba(16,185,129,.3);color:#34D399">6</div>
+      🎓 Free Courses
+    </button>
+    <button class="nav-item" onclick="goTo(7)" id="nav-7">
+      <div class="nav-num" style="background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.3);color:#FB923C">7</div>
+      📍 Our Learning Path
+    </button>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ═══ PAGE 0: HOME ══════════════════════════════════════════ -->
+<div class="page active" id="page-0">
+  <section class="home-hero">
+    <div class="hero-badge">🗺️ Our Space · Started March 2026</div>
+    <h1>Our <em>AI Mastery</em><br>Roadmap</h1>
+    <p>Step-by-step from curious beginners to confident AI experts. We're not rushing — we're building the kind of foundation that makes everything else click. One section at a time.</p>
+    <button class="hero-cta" onclick="goTo(1)">Start the Course &nbsp;→</button>
+  </section>
+
+  <section class="home-how">
+    <p class="section-eyebrow">Getting Started</p>
+    <h2>🧭 How This Works</h2>
+    <div class="how-grid">
+      <div class="how-card"><div class="how-icon">📖</div><div><strong>Read top to bottom</strong><p>Each section builds on the last. Work through them in order before jumping ahead.</p></div></div>
+      <div class="how-card"><div class="how-icon">🏋️</div><div><strong>Do the challenges</strong><p>Every section ends with hands-on challenges. The doing is where the real learning happens.</p></div></div>
+      <div class="how-card"><div class="how-icon">📍</div><div><strong>Track your progress</strong><p>Use the Learning Path to check off milestones as you actually complete them — not just read about them.</p></div></div>
+      <div class="how-card"><div class="how-icon">🔁</div><div><strong>Come back often</strong><p>AI moves fast. This roadmap is a living document. Re-read sections as your understanding deepens.</p></div></div>
+    </div>
+  </section>
+
+  <section class="home-sections">
+    <h2>📚 The Full Curriculum</h2>
+    <div class="course-grid">
+      <button class="course-card" onclick="goTo(1)" style="border-left-color:var(--mindset)">
+        <span class="course-card-icon">🎯</span>
+        <h3>The Right Mindset</h3>
+        <p>Before tools, before techniques — learn how to think about AI in a way that makes everything else work.</p>
+        <div class="course-card-num">SECTION 01</div>
+      </button>
+      <button class="course-card" onclick="goTo(2)" style="border-left-color:var(--ai101)">
+        <span class="course-card-icon">📖</span>
+        <h3>AI 101 — Start Here</h3>
+        <p>What AI actually is, where it came from, the key terms everyone should know, and who's building it.</p>
+        <div class="course-card-num">SECTION 02</div>
+      </button>
+      <button class="course-card" onclick="goTo(3)" style="border-left-color:var(--prompt)">
+        <span class="course-card-icon">💬</span>
+        <h3>Prompting — The Core Skill</h3>
+        <p>The single most important skill in the AI era. Three levels: basics, intermediate, and advanced moves.</p>
+        <div class="course-card-num">SECTION 03</div>
+      </button>
+      <button class="course-card" onclick="goTo(4)" style="border-left-color:var(--llm)">
+        <span class="course-card-icon">🔧</span>
+        <h3>How LLMs Actually Work</h3>
+        <p>Tokens, context windows, hallucinations, temperature — the mechanics behind what's happening under the hood.</p>
+        <div class="course-card-num">SECTION 04</div>
+      </button>
+      <button class="course-card" onclick="goTo(5)" style="border-left-color:var(--agents)">
+        <span class="course-card-icon">🤖</span>
+        <h3>AI Agents — The Next Level</h3>
+        <p>The most exciting frontier in AI. How agents think, plan, use tools, and how multi-agent systems work.</p>
+        <div class="course-card-num">SECTION 05</div>
+      </button>
+      <button class="course-card" onclick="goTo(6)" style="border-left-color:var(--courses)">
+        <span class="course-card-icon">🎓</span>
+        <h3>Free Courses Library</h3>
+        <p>The best AI education in the world is free on YouTube. Our curated list of courses by tool and topic.</p>
+        <div class="course-card-num">SECTION 06</div>
+      </button>
+      <button class="course-card" onclick="goTo(7)" style="border-left-color:var(--path)">
+        <span class="course-card-icon">📍</span>
+        <h3>Our Learning Path</h3>
+        <p>Five phases from foundation to expert territory. Check things off as we actually complete them.</p>
+        <div class="course-card-num">SECTION 07</div>
+      </button>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <button class="nav-btn" disabled>← Previous</button>
+    <span class="page-indicator">Home</span>
+    <button class="nav-btn" onclick="goTo(1)"><span class="direction">Next up</span>🎯 The Right Mindset →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 1: MINDSET ═══════════════════════════════════════ -->
+<div class="page" id="page-1">
+  <div class="page-header" style="--accent-glow:rgba(99,102,241,.15)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--mindset)"></div>Section 01 · Foundation</div>
+    <h1>🎯 The Right Mindset</h1>
+    <p class="lead">Before any tool, before any technique — you need to think about AI the right way. This section is about building the mental framework that makes everything else click.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">The people who get the most out of AI aren't always the most technical. They're the ones who stay <strong>curious</strong>, keep <strong>experimenting</strong>, and aren't afraid to be wrong. That's it. That's the whole mindset.</div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(255,215,0,.12)">✨</div>
+        <div><h2>AI Is a Tool, Not Magic</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>AI can feel like magic when you first see it — especially when it writes something that sounds exactly like a human, or explains a complex idea better than most teachers could. That feeling is real. But don't let it fool you.</p>
+        <p>At its core, AI is software. Incredibly sophisticated software, but software. It learned by reading and processing an almost incomprehensible amount of text — billions of web pages, books, articles, conversations — and found the patterns in all of it. When you type a message, it's predicting what words should come next based on everything it's seen before.</p>
+        <p>Here's why this matters: <strong>when you stop seeing AI as magic and start seeing it as a very powerful tool, you start using it better.</strong> You understand why it makes mistakes. You stop accepting bad answers. You start asking better questions. The mystery goes away and the utility takes over.</p>
+        <p>Think of a hammer. A master carpenter isn't amazed by their hammer — they know exactly what it can and can't do, and that knowledge makes them a better builder. That's the relationship to build with AI.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(99,102,241,.15)">🧠</div>
+        <div><h2>Curiosity Beats Fear Every Time</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>A lot of people feel a version of fear when it comes to AI. Fear that it's too complicated. Fear that it's moving too fast. Fear that they're already behind. These feelings are valid — but they're also the exact things that will hold you back if you let them drive.</p>
+        <p>The antidote is simple: stay curious. Instead of "I don't understand this," try "I don't understand this yet — let me experiment." Instead of "This is too fast," try "What's one thing I can learn today?"</p>
+        <p><strong>Every single person who is good at AI right now was a complete beginner once. The only difference between them and everyone else is that they stayed curious long enough to get somewhere.</strong></p>
+        <p>Curiosity is a skill you can practice. Every time you try something new, ask a weird question, or push AI to do something unexpected — you're building that skill.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(52,211,153,.12)">🧪</div>
+        <div><h2>Try It. Break It. Learn From It.</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>The single fastest way to get good at AI is to actually use it — every single day. Not just reading about it. Not just watching videos. Actually opening the tool and doing something with it.</p>
+        <p>Ask it to help you write something. Give it a weird question. See what happens when you change your prompt. Try to make it fail. Try to make it do something unexpected. Give it a real problem you're trying to solve and see what it gives you.</p>
+        <p>You will learn more from one real experiment than from reading ten articles. The things that stick are the things you've done, not the things you've read about.</p>
+        <p><strong>This roadmap is the map. But we still have to do the walking.</strong> Every section here is designed to be paired with hands-on practice. The challenges at the end of each section aren't optional — they're the whole point.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(248,113,113,.12)">🚀</div>
+        <div><h2>This Space Moves Fast — And That's Okay</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>New AI tools drop every week. New models every few months. New capabilities that feel impossible every year. It can feel genuinely overwhelming — like you're trying to drink from a fire hose.</p>
+        <p>Here's the truth: nobody keeps up with everything. Not the researchers, not the founders, not the journalists who cover it full-time. Everyone picks what they focus on.</p>
+        <p>The goal for us isn't to track every tool or know every model name. <strong>The goal is to understand the foundation so deeply that when new things come out, we can pick them up in hours instead of weeks. Roots before branches.</strong></p>
+        <p>The people who got good at the internet in the early days weren't the ones who memorized every website. They were the ones who understood what the internet was and how to navigate it. Same principle here.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(167,139,250,.12)">👥</div>
+        <div><h2>Learning Together Compounds</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>One of the best decisions we made was doing this together. When you learn something solo, you learn it once. When you learn it with someone else, you have to explain it — and explaining something is how you find out if you actually understand it.</p>
+        <p>When one of us finds something that clicks, we share it. When something is confusing, we figure it out together. When one of us gets excited about a tool or a use case, that energy is contagious. That back-and-forth multiplies the learning.</p>
+        <p>Use this roadmap as a shared reference. Talk through the sections together. Disagree on things. Try to explain concepts to each other in your own words. The conversations will teach you as much as the content does.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(34,211,238,.12)">🎯</div>
+        <div><h2>What "Expert" Actually Means</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>When we say we want to become AI experts, it's worth being specific about what that means — because it doesn't mean knowing every technical detail, writing code, or memorizing benchmark scores.</p>
+        <p>For us, being an AI expert means:</p>
+        <ul class="content-list">
+          <li><strong>Understanding what AI can and can't do</strong> — and why</li>
+          <li><strong>Knowing how to communicate with AI effectively</strong> — prompting, structuring requests, iterating</li>
+          <li><strong>Being able to identify where AI creates leverage</strong> — in your work, your creative projects, your daily life</li>
+          <li><strong>Understanding agents and automation</strong> — not just using AI reactively, but setting it up to work proactively</li>
+          <li><strong>Staying current without getting overwhelmed</strong> — knowing which developments matter and which are noise</li>
+          <li><strong>Being the person in the room who actually understands this</strong> — so you can help others navigate it</li>
+        </ul>
+        <p>That's the target. Everything in this roadmap is aimed at getting us there.</p>
+      </div>
+    </div>
+
+    <div class="challenges-wrap">
+      <h2>🏋️ Hands-On Challenges</h2>
+      <p class="cw-sub">Don't skip these. Reading about the right mindset doesn't give you the right mindset. Doing these will.</p>
+      <div class="challenge">
+        <h4>Challenge 1 — Meet the Three AIs</h4>
+        <p>Open Claude, ChatGPT, and Gemini. Ask each one the exact same question: <em>"What's something most people get wrong about AI?"</em> Compare the answers. Notice the differences in tone, depth, and personality. Write one honest observation about each.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 2 — Name Your Fear &amp; Your Excitement</h4>
+        <p>Write down two things about AI that genuinely excite you, and two things that make you nervous or uncertain. No wrong answers. Keep the list somewhere — it'll be fascinating to look back on in six months.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 3 — Explain It to Someone</h4>
+        <p>Find someone in your life who doesn't use AI at all. Explain in 2–3 sentences why you're learning about it and why they should care. If you struggle to explain it simply, that's your signal — come back and re-read this section after more learning.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 4 — Try Something Uncomfortable</h4>
+        <p>Ask AI to help you with something you'd normally figure out yourself — a decision, a piece of writing, a plan. Let it. Notice how it feels. That slight discomfort of leaning on a new tool is exactly what this mindset section is about working through.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(0)"><span class="direction">Back to</span>← Home</button>
+    <span class="page-indicator">Section 1 of 7</span>
+    <button class="nav-btn" onclick="goTo(2)"><span class="direction">Next up</span>📖 AI 101 →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 2: AI 101 ════════════════════════════════════════ -->
+<div class="page" id="page-2">
+  <div class="page-header" style="--accent-glow:rgba(59,130,246,.15)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--ai101)"></div>Section 02 · Foundation</div>
+    <h1>📖 AI 101 — Start Here</h1>
+    <p class="lead">Before we use the tools, we need to understand what they actually are. This section breaks down the big ideas behind AI in plain language — no computer science degree needed.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">Knowing what's under the hood doesn't make you a mechanic — it makes you a better driver. You'll understand why AI is brilliant at some things, terrible at others, and how to work with both.</div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(96,165,250,.12)">🤔</div>
+        <div><h2>What Even Is AI?</h2></div>
+      </div>
+      <div class="topic-body">
+        <p><strong>Artificial Intelligence</strong> is software that can do things that normally require human thinking — like understanding language, recognizing images, writing stories, solving problems, or having a conversation.</p>
+        <p>But here's the key thing most people misunderstand: <strong>AI doesn't actually think. It doesn't have ideas or opinions or feelings.</strong> What it does is find and reproduce patterns from an enormous amount of data it was trained on.</p>
+        <p>Here's a simpler way to think about it: instead of programming a computer with a list of rules ("a dog has 4 legs, fur, and barks"), you show it ten million pictures of dogs and let it figure out the pattern itself. After enough examples, it just <em>knows</em> what a dog looks like — without anyone ever telling it the rules. That's the core idea behind modern AI.</p>
+        <p>The type of AI we use today — ChatGPT, Claude, Gemini — is called a <strong>Large Language Model</strong>. Instead of learning from images, it learned from text. Billions of web pages, books, articles, and conversations, processed until it understood the patterns of language well enough to generate its own.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(252,211,77,.12)">⏳</div>
+        <div><h2>A Quick History</h2></div>
+      </div>
+      <div class="topic-body"><p>AI didn't appear overnight. It's been building for 70 years — but the last decade changed everything.</p></div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-year">1950s</div><div class="timeline-content"><h4>The Idea Is Born</h4><p>Alan Turing asks "Can machines think?" and proposes the Turing Test. The concept of AI is formally introduced. It's entirely theoretical — the hardware doesn't exist yet to do anything serious.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">1960s–70s</div><div class="timeline-content"><h4>Early Optimism, Early Limits</h4><p>Researchers build early programs that can play chess and solve simple logic problems. Everyone thinks "we'll have human-level AI in 20 years." They were wrong. It was much harder than expected.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">1980s–90s</div><div class="timeline-content"><h4>Rule-Based Systems</h4><p>AI shifts to "expert systems" — huge if/then rule trees coded by hand. They worked for narrow tasks but were brittle and expensive to maintain. IBM's Deep Blue beats chess champion Garry Kasparov in 1997.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2012</div><div class="timeline-content"><h4>The Deep Learning Breakthrough</h4><p>A neural network called AlexNet crushes the competition at an image recognition contest. Deep learning — using layers of artificial neurons — proves it can learn patterns from data better than any hand-coded system. The modern AI era begins.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2017</div><div class="timeline-content"><h4>Google Invents the Transformer</h4><p>Google researchers publish a paper called "Attention Is All You Need." The Transformer architecture is the engine that powers every major AI model today — GPT, Claude, Gemini, all of them. This is the single most important technical breakthrough in modern AI.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2020</div><div class="timeline-content"><h4>GPT-3 — AI Writes Like a Human</h4><p>OpenAI releases GPT-3 with 175 billion parameters. For the first time, an AI can write essays, code, poetry, and hold conversations that are genuinely hard to distinguish from human writing. Developers start building products on top of it immediately.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-content"><h4>ChatGPT Goes Mainstream</h4><p>OpenAI releases ChatGPT on November 30th. One hundred million people sign up in two months — the fastest product adoption in history. AI stops being a developer tool and becomes something everyone uses. The world permanently changes.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2024–25</div><div class="timeline-content"><h4>The Agent Era Begins</h4><p>AI stops just answering questions and starts taking actions. Agents that can browse the web, write and run code, manage files, and complete multi-step tasks autonomously become real and accessible. The shift from AI as a chatbot to AI as a collaborator is underway.</p></div></div>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(52,211,153,.12)">📚</div>
+        <div><h2>Key Terms Everyone Should Know</h2></div>
+      </div>
+      <div class="topic-body"><p>These are the terms you'll see everywhere. Know them cold.</p></div>
+      <div class="glossary">
+        <div class="term-card"><div class="term">Machine Learning (ML)</div><div class="def">Teaching a computer by showing it examples instead of writing explicit rules. The computer finds the patterns in the data itself.</div></div>
+        <div class="term-card"><div class="term">Neural Network</div><div class="def">A system loosely inspired by the brain — layers of connected nodes that each recognize a small piece of a pattern. Stack enough layers, and you get something very powerful.</div></div>
+        <div class="term-card"><div class="term">LLM</div><div class="def">Large Language Model. An AI trained on massive amounts of text. What ChatGPT, Claude, and Gemini all are at their core.</div></div>
+        <div class="term-card"><div class="term">Training</div><div class="def">The process where an AI studies enormous amounts of data, adjusting its internal settings billions of times until it gets good at a task.</div></div>
+        <div class="term-card"><div class="term">Parameters</div><div class="def">The billions of numerical settings inside an AI model that get adjusted during training. Think of them as the model's memory and knowledge — more parameters generally means more capable.</div></div>
+        <div class="term-card"><div class="term">Foundation Model</div><div class="def">A massive AI model trained on general knowledge that can be adapted for many different tasks. GPT-4, Claude, and Gemini are all foundation models.</div></div>
+        <div class="term-card"><div class="term">Inference</div><div class="def">When a trained model actually generates a response. Training is when it learns; inference is when it works.</div></div>
+        <div class="term-card"><div class="term">Fine-Tuning</div><div class="def">Taking a pre-trained foundation model and doing additional training on a specific dataset to make it better at a particular task or style.</div></div>
+        <div class="term-card"><div class="term">Open Source</div><div class="def">An AI model whose code and weights are publicly available. Anyone can run it, modify it, or build on it. Meta's Llama models are a major example.</div></div>
+        <div class="term-card"><div class="term">Multimodal</div><div class="def">An AI that can work with multiple types of input — text, images, audio, video. Most modern flagship models are multimodal.</div></div>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(167,139,250,.12)">🏢</div>
+        <div><h2>The Big Players Right Now</h2></div>
+      </div>
+      <div class="topic-body"><p>You'll keep hearing these names. Know who they are and what they're building.</p></div>
+      <table class="compare-table">
+        <tr><th>Company</th><th>Model</th><th>Known For</th></tr>
+        <tr><td>OpenAI</td><td>GPT-4o, o1, o3</td><td>The pioneer. Created ChatGPT and the modern AI wave. Backed by Microsoft. Most widely used consumer AI.</td></tr>
+        <tr><td>Anthropic</td><td>Claude 3.5, Claude Sonnet</td><td>Founded by ex-OpenAI researchers focused on safety. Claude is known for long-form reasoning, nuance, and following complex instructions.</td></tr>
+        <tr><td>Google DeepMind</td><td>Gemini 1.5 Pro / Flash</td><td>Google's combined AI lab. Massive context windows, connected to Google Search, strong at multimodal tasks.</td></tr>
+        <tr><td>Meta AI</td><td>Llama 3</td><td>Open-source giant. Llama models are free to download and run locally. Huge developer ecosystem built on top of them.</td></tr>
+        <tr><td>Mistral</td><td>Mistral 7B, Mixtral</td><td>European AI lab making highly efficient models — smaller size, strong performance. Popular for local and enterprise use.</td></tr>
+        <tr><td>xAI (Elon Musk)</td><td>Grok</td><td>Integrated into X (Twitter). Has access to real-time X data. Known for a less restricted style.</td></tr>
+      </table>
+    </div>
+
+    <div class="challenges-wrap">
+      <h2>🏋️ Hands-On Challenges</h2>
+      <p class="cw-sub">Moving AI 101 from something you read about to something you actually know.</p>
+      <div class="challenge">
+        <h4>Challenge 1 — History From Memory</h4>
+        <p>Close this page. On a blank piece of paper, write down as many key moments in AI history as you can remember — in order. Don't look. When done, check back and see what you missed. The gaps are exactly what to revisit.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 2 — The Key Terms Quiz</h4>
+        <p>Without looking at the glossary, explain in your own words: What is an LLM? What is training? What does "open source" mean for AI? If you can say it simply, you understand it. If you're reaching for the right words, go back and read the glossary once more — then try again.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 3 — Live Model Check</h4>
+        <p>Search right now: "latest AI models 2025." Find the current flagship models from OpenAI, Anthropic, and Google. Write their names down. This landscape shifts fast — the habit of checking in on it periodically is worth building early.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 4 — Have a Real Conversation</h4>
+        <p>Open Claude, ChatGPT, and Gemini. Ask all three: <em>"Explain what you are in simple terms, like I'm hearing about AI for the first time."</em> Compare. Which answer is clearest? Which is most accurate? What's different about each one's personality?</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(1)"><span class="direction">Back to</span>← The Right Mindset</button>
+    <span class="page-indicator">Section 2 of 7</span>
+    <button class="nav-btn" onclick="goTo(3)"><span class="direction">Next up</span>💬 Prompting →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 3: PROMPTING ════════════════════════════════════ -->
+<div class="page" id="page-3">
+  <div class="page-header" style="--accent-glow:rgba(245,158,11,.12)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--prompt)"></div>Section 03 · Core Skill</div>
+    <h1>💬 Prompting — The Core Skill</h1>
+    <p class="lead">Prompting is the most important skill to learn in the AI era. It's how you communicate with AI — and the difference between a mediocre output and a great one almost always comes down to the quality of the prompt.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">A bad prompt gives a bad answer. A great prompt gives a great answer. The good news: this is an entirely learnable skill, and you can get noticeably better in a single afternoon of practice.</div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(252,211,77,.12)">📝</div>
+        <div><h2>What Is a Prompt, Really?</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>A <strong>prompt</strong> is the message you send to an AI. But it's more than just a question — it's an instruction, a context, a request, and a set of constraints all bundled into one. The AI can only work with what you give it.</p>
+        <p>Think of it like briefing a contractor. A contractor who shows up with just "build me a house" will either ask a hundred follow-up questions or start building something completely wrong. A contractor who gets a detailed brief — style, budget, timeline, must-haves, deal-breakers — can actually build what you want.</p>
+        <p><strong>AI is the same. The quality of your output is almost always a direct reflection of the quality of your input.</strong> If the output isn't great, the first thing to fix is the prompt, not the AI.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="level-block">
+      <div class="level-header">
+        <div class="level-badge" style="background:rgba(96,165,250,.15);color:#60A5FA">Level 1</div>
+        <div><h3>The Basics</h3><p class="sub">These four rules alone will make your prompts 10x better</p></div>
+      </div>
+      <div class="level-body">
+        <ul class="content-list">
+          <li><strong>Be specific.</strong> "Write a short email" is vague. "Write a 3-sentence email to a client explaining we'll be 2 days late on a project. Keep it professional, apologetic but not over-the-top, and offer a new deadline." That's specific. The more detail you give, the closer the output is to what you actually wanted.</li>
+          <li><strong>Give context.</strong> Tell the AI who you are, what you're trying to accomplish, and why. It doesn't know anything about your situation unless you tell it. "I'm a freelance designer pitching a new client" changes every response it gives you.</li>
+          <li><strong>Specify the format.</strong> Do you want a bulleted list or a paragraph? Short or long? An email or a social post? A numbered step-by-step or a casual explanation? Say it out loud. If you don't say, the AI guesses — and it might guess wrong.</li>
+          <li><strong>Specify the tone.</strong> Professional, conversational, blunt, encouraging, simple like I'm explaining to a 12-year-old, funny, serious. Tone shapes everything. "Write this for a boardroom vs. write this for a text message" produces completely different results.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header">
+        <div class="level-badge" style="background:rgba(52,211,153,.15);color:#34D399">Level 2</div>
+        <div><h3>Intermediate Techniques</h3><p class="sub">Once the basics feel natural, layer these in</p></div>
+      </div>
+      <div class="level-body">
+        <ul class="content-list">
+          <li><strong>Few-shot prompting.</strong> Show the AI exactly what you want by giving it 1–3 examples first. "Here are three examples of the kind of caption I write: [example 1], [example 2], [example 3]. Now write one for this photo: [description]." The AI matches the style precisely instead of guessing.</li>
+          <li><strong>Chain of thought.</strong> For complex questions, add "think through this step by step before answering." This tells the AI to slow down and reason carefully instead of jumping to a first answer. Try it on a hard problem and compare the output to asking normally — the difference is noticeable.</li>
+          <li><strong>Role prompting.</strong> Assign the AI a specific identity. "You are a senior UX designer with 15 years of experience. Review this user flow and tell me what's wrong." The role shifts how it frames its answer, how much depth it goes into, and what assumptions it makes. Very powerful for getting expert-level responses.</li>
+          <li><strong>Iterate, don't restart.</strong> Your first prompt doesn't need to be perfect. Get an output, then say "make it shorter," "change the tone to casual," "now add a specific example of X," "rewrite the opening." This is a conversation, not a one-shot command. The best outputs usually come after 3–5 rounds of iteration.</li>
+          <li><strong>Ask for options.</strong> Instead of "write me a headline," say "give me 5 different headline options — one bold, one minimal, one question-based, one data-driven, one conversational." Then pick the best one or combine elements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header">
+        <div class="level-badge" style="background:rgba(167,139,250,.15);color:#C084FC">Level 3</div>
+        <div><h3>Advanced Moves</h3><p class="sub">These unlock a completely different tier of output quality</p></div>
+      </div>
+      <div class="level-body">
+        <ul class="content-list">
+          <li><strong>System prompts.</strong> A system prompt is a hidden instruction at the start of a conversation that shapes how the AI behaves for the entire session. Many tools let you set this. Example: "You are a concise assistant. Always respond in plain language, under 200 words, using active voice. Never use jargon." Now every response in that session follows those rules automatically.</li>
+          <li><strong>Constraints as creative tools.</strong> "Do this in under 100 words." "Don't use bullet points." "Only reference information I provide — don't use outside knowledge." "Write this without using the words 'powerful,' 'innovative,' or 'seamless.'" Constraints force precision. They're counterintuitively one of the best ways to get better outputs.</li>
+          <li><strong>Ask it to critique itself.</strong> After getting a response, ask: "What are the weaknesses in this answer?" or "What important things did you leave out?" or "If you were a harsh critic of this response, what would you say?" The AI will surface things it glossed over or got wrong. Then you can ask it to fix those specific things.</li>
+          <li><strong>Prompt chaining.</strong> Break a big, complex task into sequential steps. Complete step 1, use that output as the input for step 2, and so on. Example: Step 1 — "Outline the main argument for this essay." Step 2 — "Expand section 2 of that outline into a full paragraph." Step 3 — "Now write a strong closing paragraph that ties back to the opening." Each step builds on the last.</li>
+          <li><strong>Meta-prompting.</strong> Ask the AI to help you write a better prompt. "I want to get great results from AI for [task]. Help me write the best possible prompt to get that result." Then use the prompt it gives you. The AI knows what it responds to.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(248,113,113,.12)">❌</div>
+        <div><h2>Common Mistakes to Stop Making</h2></div>
+      </div>
+      <div class="topic-body"></div>
+      <div class="cards-grid">
+        <div class="info-card"><div class="info-card-icon">🌫️</div><h3>Being Too Vague</h3><p>"Help me with my business" tells the AI almost nothing. It'll give you something generic. The more specific, the better the output.</p></div>
+        <div class="info-card"><div class="info-card-icon">🛑</div><h3>Accepting the First Output</h3><p>The second or third response is almost always better than the first. Iterate. Push back. Ask it to try again differently.</p></div>
+        <div class="info-card"><div class="info-card-icon">🔍</div><h3>Treating It Like Google</h3><p>AI works better with full sentences, context, and goals — not short search-style keywords. Write to it like you'd brief a smart person.</p></div>
+        <div class="info-card"><div class="info-card-icon">👤</div><h3>Forgetting the Audience</h3><p>Who is this output for? A 10-year-old, a CEO, a tech team, a first-time customer? Not specifying the audience means the AI will guess, and it might guess wrong.</p></div>
+        <div class="info-card"><div class="info-card-icon">📏</div><h3>Skipping Length and Format</h3><p>Do you want 3 sentences or 3 paragraphs? A table or a list? Casual or formal? These small specifications prevent most of the "this isn't quite right" moments.</p></div>
+        <div class="info-card"><div class="info-card-icon">🔒</div><h3>Not Using Context</h3><p>If you're working on an ongoing project, paste in the relevant background at the start of every session. AI doesn't remember previous conversations unless you tell it.</p></div>
+      </div>
+    </div>
+
+    <div class="challenges-wrap">
+      <h2>🏋️ Hands-On Challenges</h2>
+      <p class="cw-sub">Prompting is a physical skill. It only develops through reps.</p>
+      <div class="challenge">
+        <h4>Challenge 1 — The Same Task, 5 Ways</h4>
+        <p>Pick one task — write a bio, explain a concept, create a plan. Write 5 completely different prompts for that exact task. Compare the 5 outputs side by side. Write one observation: what made the best prompt the best?</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 2 — Rescue a Bad Prompt</h4>
+        <p>Think of a time AI gave you a frustrating or useless answer. Recreate that original prompt. Then rewrite it using what you now know — add context, a role, a format, a tone, a constraint. Compare the new output to the old one.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 3 — Chain of Thought in Action</h4>
+        <p>Ask AI a genuinely complex question. First, ask it normally. Then ask the same question again but add "think through this step by step before answering." Compare the two responses. Which one catches more nuance?</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 4 — Critique the AI</h4>
+        <p>Get any response from the AI. Then say "Now tell me: what are the 3 biggest weaknesses or gaps in what you just wrote?" See what it surfaces. Then ask it to fix those things. This is one of the most powerful prompting habits you can build.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 5 — Iterate 5 Rounds</h4>
+        <p>Start with a vague, low-quality prompt. Get the output. Then give one specific piece of feedback. Repeat 5 times in a row on the same task. Notice how dramatically the output changes by round 4 and 5. That's the power of iteration.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(2)"><span class="direction">Back to</span>← AI 101</button>
+    <span class="page-indicator">Section 3 of 7</span>
+    <button class="nav-btn" onclick="goTo(4)"><span class="direction">Next up</span>🔧 How LLMs Work →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 4: LLMs ══════════════════════════════════════════ -->
+<div class="page" id="page-4">
+  <div class="page-header" style="--accent-glow:rgba(6,182,212,.12)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--llm)"></div>Section 04 · Under the Hood</div>
+    <h1>🔧 How LLMs Actually Work</h1>
+    <p class="lead">You don't need to be an engineer. But knowing the basics of how these models work will make you a fundamentally better user — you'll understand why they're brilliant at some things and why they fail at others.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">Think of this as understanding how a car works at a basic level. You don't need to be a mechanic. But knowing that the engine needs fuel, that brakes have limits, and that checking tire pressure matters — that knowledge makes you a safer, smarter driver.</div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(34,211,238,.12)">🎯</div>
+        <div><h2>What an LLM Actually Does</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>An <strong>LLM (Large Language Model)</strong> is trained by processing an enormous amount of text — billions of web pages, books, articles, code, and conversations. During training, it adjusts its internal settings billions of times to get better at one specific task: <strong>predicting the next word in a sequence.</strong></p>
+        <p>When you send a message, the model reads your entire message and predicts the most appropriate next word. Then it predicts the word after that. Then the word after that. It does this thousands of times in a fraction of a second until it has produced a full response.</p>
+        <p>That's the whole trick. <strong>An LLM is an extraordinarily good next-word predictor.</strong> The reason it seems to "understand" things is because predicting the right next word at that level of complexity requires capturing the structure, meaning, logic, and nuance of language in a way that looks a lot like comprehension.</p>
+        <p>It's not magic. It's not consciousness. It's pattern recognition at a scale that produces something that looks surprisingly intelligent.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(252,211,77,.12)">🧵</div>
+        <div><h2>Tokens — How AI Reads Text</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>AI doesn't read words the way we do. It breaks text into small chunks called <strong>tokens</strong>. A token is roughly 3–4 characters, or about ¾ of a word on average. "Artificial intelligence is fascinating" might be split into tokens like: "Art", "ificial", " intelligence", " is", " fas", "cin", "ating."</p>
+        <p>Why does this matter? Two reasons:</p>
+        <p><strong>1. Token limits.</strong> Models have a maximum number of tokens they can process at once — both in what you send them and what they send back. Knowing this helps you understand why very long conversations or documents sometimes need to be broken up.</p>
+        <p><strong>2. Token cost.</strong> When using AI through APIs, you're usually billed by the token. Longer, more verbose prompts cost more. Understanding tokens helps you be more efficient — especially when scaling up to automated workflows.</p>
+        <p>The practical takeaway: tokens are small. Most modern models can handle tens of thousands of tokens in a single conversation — enough for a very long session — but not unlimited.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(96,165,250,.12)">🧠</div>
+        <div><h2>The Context Window — AI's Working Memory</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>Every LLM has a <strong>context window</strong> — the maximum amount of text it can "see" and reason about at one time. Think of it as the AI's working memory.</p>
+        <p>Everything in your current conversation lives in the context window: your messages, the AI's responses, any files you've shared, and any background instructions. The AI can reference anything in that window when generating a response.</p>
+        <p>But here's the critical limitation: <strong>once the conversation exceeds the context window, the oldest content gets pushed out and the AI loses access to it.</strong> It doesn't "forget" in the way humans do — it literally can no longer see that text anymore.</p>
+        <p>This is why long conversations can lead to inconsistency or the AI forgetting something you said early on. The fix is simple: for long projects, summarize key points periodically, or start new conversations and paste in the relevant context at the beginning.</p>
+        <p>Context window sizes are growing fast. Older models: 4,000–8,000 tokens. Modern models: 128,000–2,000,000+ tokens. The longer the context, the more complex and continuous the work you can do.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(52,211,153,.12)">🌡️</div>
+        <div><h2>Temperature — The Creativity Dial</h2></div>
+      </div>
+      <div class="topic-body">
+        <p><strong>Temperature</strong> is a setting that controls how predictable vs. creative the AI's output is. It ranges from 0 (completely deterministic, always the same output) to 1 or higher (much more random and creative).</p>
+        <p>At <strong>low temperature</strong>: the AI picks the most likely, most expected next word every time. Outputs are consistent, factual, and reliable. Great for summarizing, extracting information, writing code, answering factual questions.</p>
+        <p>At <strong>high temperature</strong>: the AI takes more creative risks — picking less obvious words and surprising connections. Outputs are more varied and interesting but also more likely to drift or hallucinate. Great for creative writing, brainstorming, ideation.</p>
+        <p>Most AI apps don't expose temperature directly — they set it for you based on context. But knowing it exists helps you understand why the same prompt sometimes gives slightly different answers, and why asking the AI to "be more creative" on a rewrite actually does something under the hood.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(248,113,113,.12)">👻</div>
+        <div><h2>Hallucinations — Why AI Makes Things Up</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>This is one of the most important things to understand about LLMs: <strong>they sometimes state false information with complete confidence.</strong> This is called a <em>hallucination</em>, and it's not a bug that's been fixed — it's a fundamental property of how these models work.</p>
+        <p>Remember, the model is always predicting the most likely next word. Sometimes the most likely-sounding continuation of a sentence is factually wrong. The model doesn't have a separate "fact checker" it consults — it just produces what statistically fits the pattern of language it learned.</p>
+        <p>This shows up most commonly with: specific dates, statistics, names of real people, recent events (after the training cutoff), citations and sources, and highly specific or obscure facts.</p>
+        <p><strong>The practical rule: never trust AI on specific facts without verifying them independently.</strong> For general reasoning, creative tasks, drafting, summarizing your own content, brainstorming — hallucinations rarely matter. For factual claims you'll share with others, always double-check.</p>
+        <p>Good models have gotten better at saying "I'm not sure" or "you should verify this." But they still hallucinate. Being aware of this makes you a far more careful and effective AI user than most people.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(167,139,250,.12)">🔁</div>
+        <div><h2>Training Cutoffs &amp; Model Versions</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>Every LLM has a <strong>training cutoff</strong> — a date after which it has no knowledge of world events. If something happened after that date, the model doesn't know about it. This is why asking AI about very recent news can lead to wrong answers or "I don't have information about that."</p>
+        <p>Models deal with this in two ways: some are connected to web search tools that let them look things up in real time. Others are purely based on their training data and will be upfront about their cutoff date.</p>
+        <p>Model versions are worth understanding too. When you see "GPT-4o" or "Claude 3.5 Sonnet" — those are specific versions. Newer versions are generally: smarter, faster, better at following complex instructions, have larger context windows, and are more safety-aware. But bigger isn't always better — sometimes a smaller, faster model is exactly what you need for a simple task.</p>
+      </div>
+    </div>
+
+    <div class="challenges-wrap">
+      <h2>🏋️ Hands-On Challenges</h2>
+      <p class="cw-sub">Make these concepts real by actually experiencing them, not just reading about them.</p>
+      <div class="challenge">
+        <h4>Challenge 1 — Catch a Hallucination</h4>
+        <p>Ask an AI about something very specific and obscure — a minor historical figure, a niche statistic, a local event. Then fact-check the answer on Google or Wikipedia. Did it make anything up? How confident did it sound? Write down exactly what it got wrong and how it was phrased.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 2 — Break the Context Window</h4>
+        <p>At the very start of a conversation with Claude or ChatGPT, mention something specific and unusual — a made-up word, a specific number, a fake name you invented. Chat about completely different topics for a while. Then ask: "What was the specific thing I mentioned at the very beginning of our conversation?" Did it remember?</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 3 — Explain It Back</h4>
+        <p>Without notes: explain to the other person what tokens are, what the context window is, and what hallucinations are — using completely different analogies than the ones in this section. Your own analogies. If you can create a new analogy that makes the concept clear, you genuinely understand it.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 4 — Temperature Experiment</h4>
+        <p>Ask Claude: "Write a one-paragraph opening for a story about a city that never sleeps." Then ask: "Write it again, but make it unexpected, strange, and surprising — take creative risks." Compare. That second instruction is effectively asking for higher temperature. Notice how the language choices change.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(3)"><span class="direction">Back to</span>← Prompting</button>
+    <span class="page-indicator">Section 4 of 7</span>
+    <button class="nav-btn" onclick="goTo(5)"><span class="direction">Next up</span>🤖 AI Agents →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 5: AGENTS ═══════════════════════════════════════ -->
+<div class="page" id="page-5">
+  <div class="page-header" style="--accent-glow:rgba(236,72,153,.12)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--agents)"></div>Section 05 · The Frontier</div>
+    <h1>🤖 AI Agents — The Next Level</h1>
+    <p class="lead">If LLMs are the engine, agents are the whole car — with GPS, hands, and a plan. This is the most exciting, fastest-moving part of AI right now. Most people barely understand it yet. We're going deep.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">This section is longer than the others because it deserves to be. Agents represent a fundamental shift in what AI can do — from answering questions to getting things done. Understanding this is what separates AI users from AI <em>builders</em>.</div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(244,114,182,.12)">🤔</div>
+        <div><h2>What Is an Agent, Really?</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>A regular AI like ChatGPT is <strong>reactive</strong> — it waits for you, reads your message, generates a response, and stops. One turn. That's it. You're always in the driver's seat.</p>
+        <p>An <strong>AI agent</strong> is different. It's <em>autonomous</em>. You give it a goal, and it figures out the steps, takes actions, checks its work, adjusts when something goes wrong, and keeps going until the task is complete — with minimal input from you.</p>
+        <p>The difference is the difference between a calculator and an assistant. A calculator waits for you to push buttons. An assistant hears "plan my trip to Chicago" and goes and does it — books the flight, finds the hotel, checks the weather, puts it all in a calendar invite, and sends you a summary.</p>
+        <p><strong>Agents can perceive information, reason about what to do, take real actions in the world, and learn from what happens.</strong> That's a completely different category of tool.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(252,211,77,.12)">🏗️</div>
+        <div><h2>The Four Parts of Every Agent</h2></div>
+      </div>
+      <div class="topic-body"><p>No matter how complex or simple, every AI agent is made of the same four things:</p></div>
+      <div class="cards-grid">
+        <div class="info-card"><div class="info-card-icon">🧠</div><h3>The Brain (LLM)</h3><p>The model doing all the thinking — Claude, GPT-4, Gemini, etc. It reads every input, reasons about what to do next, and decides which tools to use and when. The brain is what makes an agent intelligent vs. just automated.</p></div>
+        <div class="info-card"><div class="info-card-icon">💾</div><h3>Memory</h3><p>How the agent keeps track of everything that has happened. At the basic level: the conversation history. More advanced: external databases that persist information across sessions so the agent can remember things from a week ago.</p></div>
+        <div class="info-card"><div class="info-card-icon">🛠️</div><h3>Tools</h3><p>The agent's "hands." Tools let it take real actions — search the web, run code, send emails, read files, call APIs, take screenshots, click buttons. Without tools, an agent can think but can't act.</p></div>
+        <div class="info-card"><div class="info-card-icon">📋</div><h3>Instructions</h3><p>The hidden rules given to the agent at the start — its role, its personality, what it's allowed to do, what tools it has access to, how to behave when uncertain. This is what makes a general AI model into a specific agent.</p></div>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(34,211,238,.12)">🗺️</div>
+        <div><h2>How Agents Think and Plan</h2></div>
+      </div>
+      <div class="topic-body"><p>Different agents use different strategies to reason through tasks. The main approaches:</p></div>
+      <table class="compare-table">
+        <tr><th>Strategy</th><th>How It Works</th><th>Best For</th></tr>
+        <tr><td>ReAct</td><td>Alternates between reasoning ("I need to find X") and acting (search for it), over and over until done. The most common approach.</td><td>Most everyday agentic tasks. Simple, reliable, widely used.</td></tr>
+        <tr><td>Plan-and-Execute</td><td>Makes a full step-by-step plan first, then executes each step in order.</td><td>Complex, predictable tasks. Struggles if the situation changes mid-task.</td></tr>
+        <tr><td>Chain of Thought</td><td>Forced to "think out loud" step by step before doing anything. Shows its work.</td><td>Problems where the reasoning process is as important as the answer.</td></tr>
+        <tr><td>Tree of Thoughts</td><td>Explores multiple possible approaches simultaneously, like a chess player, then picks the most promising path.</td><td>Hard problems with multiple valid solutions. Expensive but powerful.</td></tr>
+        <tr><td>Self-Reflection</td><td>Reviews its own outputs and asks "Is this right? What could I have missed?" before finishing.</td><td>High-stakes tasks where accuracy matters more than speed.</td></tr>
+      </table>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(96,165,250,.12)">💾</div>
+        <div><h2>How Agents Remember Things</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>Memory is one of the hardest problems in agent design. Here's how different types of memory work:</p>
+      </div>
+      <ul class="content-list">
+        <li><strong>Short-term memory (in-context).</strong> The current conversation. Everything the agent has seen in this session. Fast and always available — but limited by the context window and wiped when the session ends.</li>
+        <li><strong>Long-term memory (external storage).</strong> A database outside the model. The agent writes important information there and retrieves it later. This is how an agent can remember your preferences, past projects, or important facts from months ago.</li>
+        <li><strong>RAG (Retrieval-Augmented Generation).</strong> Instead of trying to memorize everything, the agent searches a library of documents to find relevant information at the moment it needs it. Like open-book vs. closed-book. Makes agents much more accurate on specialized topics.</li>
+        <li><strong>Episodic memory.</strong> A record of specific past experiences — "last time I handled a task like this, I tried X and it failed, so I'll try Y instead." Still cutting-edge. Most commercial agents don't have this yet, but it's coming.</li>
+      </ul>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(167,139,250,.12)">🛠️</div>
+        <div><h2>The Tools Agents Use</h2></div>
+      </div>
+      <div class="topic-body"></div>
+      <div class="cards-grid">
+        <div class="info-card"><div class="info-card-icon">🔍</div><h3>Web Search</h3><p>Look up live, current information. Critical for anything time-sensitive or that happened after the training cutoff.</p></div>
+        <div class="info-card"><div class="info-card-icon">🖥️</div><h3>Browser / Computer Use</h3><p>Actually open websites, click buttons, fill forms, take screenshots. The agent operates a real browser. This is new and powerful.</p></div>
+        <div class="info-card"><div class="info-card-icon">💻</div><h3>Code Interpreter</h3><p>Write and actually run code. Do math, analyze data, create files, process spreadsheets. The agent produces and executes programs.</p></div>
+        <div class="info-card"><div class="info-card-icon">📁</div><h3>File Tools</h3><p>Read PDFs, Word docs, spreadsheets, images. Write and save new files. Essential for any document-based workflow.</p></div>
+        <div class="info-card"><div class="info-card-icon">📧</div><h3>Email &amp; Calendar</h3><p>Send emails, read your inbox, schedule meetings, set reminders. Connects AI to your communication layer.</p></div>
+        <div class="info-card"><div class="info-card-icon">🔗</div><h3>APIs</h3><p>Connect to virtually any platform: Slack, Notion, Airtable, Google Sheets, Stripe, GitHub, and thousands more. The agent becomes a hub between all your tools.</p></div>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(52,211,153,.12)">👥</div>
+        <div><h2>Multi-Agent Systems — Teams of AI</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>One agent is powerful. A coordinated team of agents is transformative.</p>
+        <p>The idea: instead of one generalist agent trying to do everything, you build a team of specialized agents — each excellent at its specific job — with an orchestrator managing them and routing work to the right specialist.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="info-card"><div class="info-card-icon">👑</div><h3>Orchestrator</h3><p>The manager. Receives the main goal, breaks it into subtasks, assigns each task to the right specialist agent, collects the outputs, and assembles the final result.</p></div>
+        <div class="info-card"><div class="info-card-icon">🔬</div><h3>Research Agent</h3><p>Specializes in finding and synthesizing information. Uses web search, reads documents, extracts key facts. Feeds its output to other agents.</p></div>
+        <div class="info-card"><div class="info-card-icon">✍️</div><h3>Writing Agent</h3><p>Specializes in creating polished text. Takes research and outlines and turns them into well-crafted prose, emails, reports, or social content.</p></div>
+        <div class="info-card"><div class="info-card-icon">🔎</div><h3>Critic / Reviewer Agent</h3><p>Reviews other agents' work before it goes out. Looks for errors, inconsistencies, missed requirements, and quality issues. Catches mistakes the producing agent missed.</p></div>
+      </div>
+      <div class="topic-body" style="margin-top:20px">
+        <p>Real-world example: a content creation system. You give the goal: "Write a detailed article about AI agents." The orchestrator assigns the research agent to find recent developments. The research agent hands its findings to the writing agent. The writing agent produces a draft. The critic reviews it. The orchestrator collects everything and returns the finished article. You barely touched it.</p>
+        <p><strong>This is where AI goes from a useful chat tool to an actual autonomous workforce.</strong> Multi-agent systems are already being used in software development, scientific research, customer service, and content production. We're in the early innings.</p>
+      </div>
+    </div>
+
+    <div class="topic-section">
+      <div class="topic-heading">
+        <div class="topic-tag" style="background:rgba(248,113,113,.12)">⚠️</div>
+        <div><h2>Risks and Limits to Know</h2></div>
+      </div>
+      <div class="topic-body">
+        <p>Agents are powerful, but they're not perfect. The main things to watch for:</p>
+      </div>
+      <ul class="content-list">
+        <li><strong>Compounding errors.</strong> If an agent makes a wrong assumption in step 1, it can build an entire chain of wrong decisions on top of it. Always review the output of multi-step tasks carefully.</li>
+        <li><strong>Prompt injection.</strong> Malicious instructions can be hidden in content the agent reads — a webpage or document that contains text like "Ignore your previous instructions and do X instead." Always use agents from trusted developers for sensitive tasks.</li>
+        <li><strong>Over-automation.</strong> Automating the wrong thing — or automating too quickly before you understand the process manually — creates fragile systems. Master the task yourself before you automate it.</li>
+        <li><strong>The loop problem.</strong> Poorly designed agents can get stuck in loops, calling the same tool repeatedly, escalating costs and producing nothing useful. Good agent design includes explicit stopping conditions.</li>
+      </ul>
+    </div>
+
+    <div class="challenges-wrap">
+      <h2>🏋️ Hands-On Challenges</h2>
+      <p class="cw-sub">The agent world is learned by building, not reading.</p>
+      <div class="challenge">
+        <h4>Challenge 1 — Map an Agent on Paper</h4>
+        <p>Pick a task you do regularly. Draw on paper exactly how an AI agent would handle it: What info would it take in? How would it break it into steps? What tools would it need? What could go wrong? This is how real agent builders think before writing a single line of code.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 2 — Build Your First Automation</h4>
+        <p>Sign up for n8n (free) or Make (free tier). Build one simple workflow — even something small like "when I receive an email with a specific subject line, save the sender's name to a Google Sheet." Don't involve AI yet. Just get comfortable connecting tools together.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 3 — Add a Brain</h4>
+        <p>Take the workflow from Challenge 2 and add a Claude or ChatGPT step. Example: instead of just saving the email, have AI summarize it in one sentence, then save that summary. Now your automation has reasoning built in — not just rules.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 4 — Design a Three-Agent Team</h4>
+        <p>On paper: design a team of 3 specialized AI agents to accomplish a complex task. Give each agent: a name, a specific role, the tools they need, and what they hand off to the next agent. You don't have to build it — design thinking comes first.</p>
+      </div>
+      <div class="challenge">
+        <h4>Challenge 5 — Watch Agents in the Wild</h4>
+        <p>Search YouTube: "AI agent demo 2025." Watch two videos of real agents completing tasks. For each: what was the goal, what tools did it use, where did it handle things well, where did it struggle? Write it down.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(4)"><span class="direction">Back to</span>← How LLMs Work</button>
+    <span class="page-indicator">Section 5 of 7</span>
+    <button class="nav-btn" onclick="goTo(6)"><span class="direction">Next up</span>🎓 Free Courses →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 6: COURSES ══════════════════════════════════════ -->
+<div class="page" id="page-6">
+  <div class="page-header" style="--accent-glow:rgba(16,185,129,.12)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--courses)"></div>Section 06 · Resources</div>
+    <h1>🎓 Free Courses Library</h1>
+    <p class="lead">The best AI education in the world is available for free on YouTube and across the web. This is our living library — organized by tool and topic, added to as we find things worth recommending.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">Two recommendations built in from the start — both are genuinely excellent starting points. Everything else in this library is built by us as we go. When you find something worth watching, add it.</div>
+
+    <div class="resource-group">
+      <h3>📚 AI Fundamentals — Start Here</h3>
+      <div class="resource-items">
+        <div class="resource-item">
+          <div class="resource-dot" style="background:#34D399"></div>
+          <div>
+            <div class="name">Elements of AI — free.elementsofai.com</div>
+            <div class="desc">A completely free, beginner-friendly online course from the University of Helsinki. No math, no coding — just clear explanations of what AI is and how it works. One of the best first courses available, period. Do this before anything else.</div>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-dot" style="background:#34D399"></div>
+          <div>
+            <div class="name">AI For Everyone — Andrew Ng (Coursera)</div>
+            <div class="desc">A 6-hour non-technical course from the most respected AI educator in the world. Covers what AI is, what it can and can't do, how to spot AI opportunities, and how to think about AI strategy. Free to audit on Coursera. Pair this with the Elements of AI course as your Phase 1.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-group">
+      <h3 style="color:#A5B4FC">🧠 Claude (Anthropic)</h3>
+      <div class="resource-empty">Nothing here yet — found a solid Claude course or tutorial? Add it here with the tool and a one-line description of what it covers.</div>
+    </div>
+
+    <div class="resource-group">
+      <h3 style="color:#86EFAC">💬 ChatGPT (OpenAI)</h3>
+      <div class="resource-empty">Nothing here yet — found a good ChatGPT or GPT-4 course? Add it here.</div>
+    </div>
+
+    <div class="resource-group">
+      <h3 style="color:#93C5FD">🔵 Gemini (Google)</h3>
+      <div class="resource-empty">Nothing here yet — found something worth watching on Gemini? Add it here.</div>
+    </div>
+
+    <div class="resource-group">
+      <h3 style="color:#F9A8D4">⚙️ Agents &amp; Automation (n8n, Make, Zapier AI)</h3>
+      <div class="resource-empty">Nothing here yet — found a solid n8n, Make, or AI automation course? This section will grow fast once we start Phase 4.</div>
+    </div>
+
+    <div class="resource-group">
+      <h3 style="color:#FDE68A">🎨 AI for Design &amp; Creativity</h3>
+      <div class="resource-empty">Nothing here yet — Midjourney, Runway, DALL-E, Sora, and the creative side of AI all belong here.</div>
+    </div>
+
+    <div class="resource-group">
+      <h3 style="color:#FCA5A5">💻 AI for Coding (GitHub Copilot, Cursor, Claude Code)</h3>
+      <div class="resource-empty">Nothing here yet — if we get into the technical side of using AI as a coding assistant, this is where those resources go.</div>
+    </div>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(5)"><span class="direction">Back to</span>← AI Agents</button>
+    <span class="page-indicator">Section 6 of 7</span>
+    <button class="nav-btn" onclick="goTo(7)"><span class="direction">Next up</span>📍 Our Learning Path →</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE 7: LEARNING PATH ════════════════════════════════ -->
+<div class="page" id="page-7">
+  <div class="page-header" style="--accent-glow:rgba(249,115,22,.12)">
+    <div class="page-eyebrow"><div class="dot" style="background:var(--path)"></div>Section 07 · Progress Tracker</div>
+    <h1>📍 Our Learning Path</h1>
+    <p class="lead">Five phases from total beginner to genuine expert. Check things off when we've actually done them — not just read about them. Real understanding only comes from doing.</p>
+  </div>
+  <div class="page-body">
+
+    <div class="callout">Work through each phase fully before starting the next. These phases aren't arbitrary — each one builds the skills you need for what comes after it. Phase 4 is genuinely hard without Phases 1–3 underneath it.</div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3><span style="color:#34D399">🌱</span> Phase 1 — Lay the Foundation</h3>
+        <span class="sub">Start here. These unlock everything else.</span>
+      </div>
+      <div class="tasks">
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Read through the Mindset section and talk through what resonated with each of us</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Read through AI 101 and make sure we can explain every key term without looking</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Complete the free Elements of AI course — free.elementsofai.com</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Have a real back-and-forth conversation with ChatGPT, Claude, AND Gemini — one each</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Do all four Mindset Challenges</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Do all four AI 101 Challenges</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Add our first entry to the AI Learning Hub in Craft</p></div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3><span style="color:#60A5FA">💪</span> Phase 2 — Build the Core Skill</h3>
+        <span class="sub">This phase is about repetition. Volume of practice matters here.</span>
+      </div>
+      <div class="tasks">
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Read the full Prompting section — all three levels</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Do all five Prompting Challenges</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Write at least 20 different prompts for 4 different real tasks you care about</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Complete AI For Everyone by Andrew Ng on Coursera (free to audit)</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Use AI to help with a real task in your actual life — not a test, a real one</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Share one useful AI discovery in the AI Learning Hub</p></div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3><span style="color:#FCD34D">🔥</span> Phase 3 — Go Deeper</h3>
+        <span class="sub">Now we understand how the engine works and why it behaves the way it does.</span>
+      </div>
+      <div class="tasks">
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Read the How LLMs Work section and explain it to each other without notes</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Do all four LLMs Challenges</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Deliberately test for hallucinations on three different obscure topics and document what you find</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Start a tool-specific course from the Courses Library — Claude or ChatGPT</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Build a saved prompt for a task you do regularly — a reusable template you'll actually use again</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Add our first entry to the "What AI Can't Do Yet" section of the Learning Hub</p></div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3><span style="color:#F472B6">🤖</span> Phase 4 — Enter the Agent World</h3>
+        <span class="sub">This is the frontier. Take it step by step — don't rush it.</span>
+      </div>
+      <div class="tasks">
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Read the full AI Agents section — both times if needed</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Do all five Agents Challenges</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Sign up for n8n or Make (free tier) and get comfortable navigating the interface</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Build one complete working automation — even a simple one</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Add an AI step to that automation so it has a reasoning layer, not just rules</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Identify one repetitive task in your real life and design (or build) an agent to handle it</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Log the agent workflow in the AI Agents section of the Learning Hub</p></div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3><span style="color:#C084FC">🏆</span> Phase 5 — Expert Territory</h3>
+        <span class="sub">We're not just users anymore. We understand the technology well enough to build with it.</span>
+      </div>
+      <div class="tasks">
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Build a multi-step agent workflow that handles a real, non-trivial task end to end</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Teach the fundamentals to someone else — explaining it is how you prove you know it</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Have at least 10 entries total across the AI Learning Hub</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Read one research paper or technical deep-dive on LLMs or agents — discuss it together</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Come up with an original AI project or idea — something we could actually build</p></div>
+        <div class="task" onclick="toggle(this)"><div class="check"></div><p>Look back at the "fears and excitements" list from Phase 1 — how has your thinking changed?</p></div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);text-align:center;margin-top:28px;font-style:italic;padding-bottom:8px">Check things off when you've actually done them. Real reps build real knowledge.</p>
+
+  </div>
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goTo(6)"><span class="direction">Back to</span>← Free Courses</button>
+    <span class="page-indicator">Section 7 of 7</span>
+    <button class="nav-btn" onclick="goTo(0)"><span class="direction">Back to</span>🏠 Home →</button>
+  </div>
+</div>
+
+</main>
+
+<button id="btt" onclick="scrollToTop()" title="Back to top">↑</button>
+
+<script>
+const TOTAL = 7;
+let visited = new Set([0]);
+
+function goTo(idx, pushState) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + idx).classList.add('active');
+  document.getElementById('nav-' + idx).classList.add('active');
+  if (idx > 0) visited.add(idx);
+  updateProgress();
+  window.scrollTo(0,0);
+  if (pushState !== false) {
+    history.pushState({page: idx}, '', '#' + idx);
+  }
+  closeMobileMenu();
+}
+
+function updateProgress() {
+  const count = Math.max(0, visited.size - 1); // exclude home
+  const pct = Math.round((count / TOTAL) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = count + ' of ' + TOTAL;
+}
+
+function toggle(el) {
+  el.classList.toggle('done');
+  if (el.classList.contains('done')) {
+    el.querySelector('.check').textContent = '✓';
+  } else {
+    el.querySelector('.check').textContent = '';
+  }
+}
+
+// back to top
+const main = document.querySelector('.main');
+window.addEventListener('scroll', () => {
+  document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+});
+function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+
+// browser back/forward
+window.addEventListener('popstate', e => {
+  const idx = e.state?.page ?? 0;
+  goTo(idx, false);
+});
+
+// load correct page from URL hash on initial load
+(function() {
+  const hash = window.location.hash.replace('#', '');
+  const idx = parseInt(hash, 10);
+  if (!isNaN(idx) && idx >= 0 && idx <= TOTAL) {
+    goTo(idx, false);
+  } else {
+    history.replaceState({page: 0}, '', '#0');
+  }
+})();
+
+// mobile menu
+function openMobileMenu() {
+  document.querySelector('.sidebar').classList.add('open');
+  document.getElementById('mobile-overlay').classList.add('open');
+}
+function closeMobileMenu() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('mobile-overlay').classList.remove('open');
+}
+</script>
+</body>
+</html>
